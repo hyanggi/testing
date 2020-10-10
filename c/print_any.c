@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <inttypes.h>
+#include <assert.h>
 
 void print_int(int x)
 {
@@ -44,6 +45,10 @@ union four_octet_pack
 
 void print_four_octet_pack(const union four_octet_pack *fop)
 {
+	static_assert(sizeof fop->first_octet + sizeof fop->second_octet == sizeof fop->first_two_octets, "Size error");
+	static_assert(sizeof fop->third_octet + sizeof fop->fourth_octet == sizeof fop->second_two_octets, "Size error");
+	static_assert(sizeof fop->first_two_octets + sizeof fop->second_two_octets == sizeof fop->four_octets, "Size error");
+
 	printf("%" PRIu8 " %" PRIu8 " %" PRIu8 " %" PRIu8, fop->first_octet, fop->second_octet, fop->third_octet, fop->fourth_octet);
 }
 
