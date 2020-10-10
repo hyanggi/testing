@@ -21,34 +21,34 @@ void print_str(const char *x)
 }
 
 // Demonstration of anonymous structs and anonymous unions
-union four_byte_pack
+union four_octet_pack
 {
-	uint32_t four_bytes;
+	uint32_t four_octets;
 	struct {
 		union {
-			uint16_t first_two_bytes;
+			uint16_t first_two_octets;
 			struct {
-				uint8_t first_byte;
-				uint8_t second_byte;
+				uint8_t first_octet;
+				uint8_t second_octet;
 			};
 		};
 		union {
-			uint16_t second_two_bytes;
+			uint16_t second_two_octets;
 			struct {
-				uint8_t third_byte;
-				uint8_t fourth_byte;
+				uint8_t third_octet;
+				uint8_t fourth_octet;
 			};
 		};
 	};
 };
 
-void print_four_byte_pack(const union four_byte_pack *fbp)
+void print_four_octet_pack(const union four_octet_pack *fop)
 {
-	printf("%" PRIu8 " %" PRIu8 " %" PRIu8 " %" PRIu8, fbp->first_byte, fbp->second_byte, fbp->third_byte, fbp->fourth_byte);
+	printf("%" PRIu8 " %" PRIu8 " %" PRIu8 " %" PRIu8, fop->first_octet, fop->second_octet, fop->third_octet, fop->fourth_octet);
 }
 
 // Generic selection
-#define print_any(x) _Generic((x), int: print_int, double: print_double, char*: print_str, union four_byte_pack*: print_four_byte_pack)(x)
+#define print_any(x) _Generic((x), int: print_int, double: print_double, char*: print_str, union four_octet_pack*: print_four_octet_pack)(x)
 
 int main(void)
 {
@@ -73,8 +73,8 @@ int main(void)
 		printf("\n");
 	}
 
-	printf("four_byte_pack: ");
-	print_any(&(union four_byte_pack){.four_bytes = 4*256*256*256 + 3*256*256 + 2*256 + 1*1}); // compound literal
+	printf("four_octet_pack: ");
+	print_any(&(union four_octet_pack){.four_octets = 4*256*256*256 + 3*256*256 + 2*256 + 1*1}); // compound literal
 	printf("\n");
 
 	return 0;
