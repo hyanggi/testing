@@ -74,7 +74,7 @@ int main(void)
 	}
 
 	printf("four_octet_pack: ");
-	print_any(&(union four_octet_pack){.four_octets = 4*256*256*256 + 3*256*256 + 2*256 + 1*1}); // compound literal
+	print_any(&(union four_octet_pack){.four_octets = 0x04030201}); // compound literal
 	printf("\n");
 
 	return 0;
