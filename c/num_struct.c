@@ -47,10 +47,12 @@ struct number
 	};
 };
 
-static_assert(sizeof(struct number) - offsetof(struct number, num_uint) == 8, "The size of the union is incorrect.");
-
 void print_num(const struct number *num)
 {
+	static_assert(sizeof num->struct_uint == sizeof num->num_uint, "The size of struct_uint is incorrect.");
+	static_assert(sizeof num->struct_int == sizeof num->num_int, "The size of struct_int is incorrect.");
+	static_assert(sizeof num->struct_double == sizeof num->num_double, "The size of struct_double is incorrect.");
+
 	switch (num->type) {
 	case type_uint:
 		printf("%u\n", num->num_uint);
@@ -96,6 +98,8 @@ bool is_little_endian(void)
 	} checker = {
 		.bytes = {0, 1, 2, 3}
 	};
+
+	static_assert(sizeof checker.value == sizeof checker.bytes, "The size of unsigned int is incorrect.");
 
 	if (checker.value == 0x03020100) // Little endian
 		return true;
