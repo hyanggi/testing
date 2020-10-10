@@ -13,4 +13,4 @@ bin-cpp/restrict: restrict.c
 
 bin-cpp/num_struct: CXXSTD = -std=c++2a
 
-CXX_NOT_COMPATIBLE = echo '$^ is not compatible with C++.' > $@
+CXX_NOT_COMPATIBLE = echo "echo '$^ is not compatible with C++.'" > $@ && chmod +x $@
