@@ -88,8 +88,26 @@ void print_num(const struct number *num)
 	}
 }
 
+bool is_little_endian(void)
+{
+	union {
+		unsigned int value;
+		unsigned char bytes[4];
+	} checker = {
+		.bytes = {0, 1, 2, 3}
+	};
+
+	if (checker.value == 0x03020100) // Little endian
+		return true;
+	else
+		return false;
+}
+
 int main(void)
 {
+	if (!is_little_endian())
+		return -1;
+
 	struct number largest_unsigned_num = {.type = type_uint, .struct_uint = {.bytes = {0xff, 0xff, 0xff, 0xff}}};
 	print_num(&largest_unsigned_num);
 
