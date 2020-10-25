@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# This script tests and checks the results of the monitor programs.
+
+if [ $# -lt 1 ]; then
+	echo 'Provide the binary to be tested.'
+	exit 1
+fi
+
+bold_red='\x1B[1;31m'
+default='\x1B[0m'
+
+for program in "$@"; do
+	echo -e "${bold_red}Testing \"${program}\"...${default}"
+
+	eval "$program" | awk '
+{
+	producer[$7] += 1
+	consumer[$2] += 1
+	data[$4] += 1
+}
+END {
+	for (i in producer)
+		print "Producer thread", i, "appeared", producer[i], "times."
+
+	for (i in consumer)
+		print "Comsumer thread", i, "appeared", consumer[i], "times."
+
+	for (i in data)
+		print "Data", i, "appeared", data[i], "times."
+}
+'
+done

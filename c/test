@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+bold_red='\x1B[1;31m'
+default='\x1B[0m'
+
+for program in bin-c/* bin-cpp/*; do
+	echo -e "${bold_red}--------------- $program ----------------${default}"
+	"$program"
+done

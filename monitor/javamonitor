@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# This file is for easy testing of the Java program.
+
+javac monitor.java
+java monitor
+rm *.class

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+cd "$1"
+
+if [[ -f wchar ]]; then
+	./wchar 'lü绿🍀' # Basic test, non-BMP character included
+
+	./wchar '标，点。' # Test character classification (Chinese text)
+	./wchar 'Αα, Ββ.' # Test case mapping (Greek letters)
+
+	LANG=ja_JP.UTF-8 ./wchar 'かな　カナ' # Test Japanese Kana mapping
+	./wchar 'Ǳǲǳ' # Test "totitle" mapping
+
+	./wchar 'ǚǚ' # Combining characters (Latin)
+	./wchar 'कि' # Combining characters (Devanagari)
+	./wchar '한한' # Conjoining Hangul Jamo
+
+	./wchar '' # Empty test
+	./wchar $'lü绿\xf0\x9f\x8d' # Incomplete sequence
+	echo
+fi
+
+if [[ -f uchar ]]; then
+	./uchar 'lü绿🍀'
+	./uchar '' # Empty test
+	./uchar $'lü绿\xf0\x9f\x8d' # Incomplete sequence
+	echo
+fi
