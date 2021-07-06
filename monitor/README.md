@@ -1,6 +1,6 @@
 # monitor
 
-Each `monitor.*` file here implements a ring buffer that is safe to use when there are multiple producer threads and multiple consumer threads, using a *monitor* (*mutex* + *condition variables*).
+Each `monitor.*` file here implements a ring buffer that is safe to use when there are multiple producer threads and multiple consumer threads, using a *monitor* (a *mutex* + *condition variables*).
 
 ## Language comparison
 

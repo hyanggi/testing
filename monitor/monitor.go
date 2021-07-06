@@ -1,4 +1,4 @@
-// This program demonstrates the use of "monitor" (mutex + condition varialbles) in the classic producer-consumer problem.
+// This program demonstrates the use of a "monitor" (a mutex + condition varialbles) in the classic producer-consumer problem.
 
 package main
 

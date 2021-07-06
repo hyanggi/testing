@@ -12,7 +12,7 @@ These are some testing and hello-world programs.
 
   - `c++_stdlib/`: Explores the C++ standard library
 
-  - `monitor/`: Use *monitors* to implement a ring buffer supporting multiple producer threads and multiple consumer threads
+  - `monitor/`: Use a *monitor* to implement a ring buffer supporting multiple producer threads and multiple consumer threads
 
   - `lockfree/`: Implements a ring buffer supporting one producer thread and one consumer thread without the use of locks
 
